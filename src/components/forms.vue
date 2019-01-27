@@ -97,9 +97,9 @@ export default {
     this.departamentos = depa
     this.provincias = prov
     this.distritos = distri
-    console.log(this.departamentos)
-    console.log(this.provincias)
-    console.log(this.distritos)
+    //console.log(this.departamentos)
+    //console.log(this.provincias)
+    //console.log(this.distritos)
   },
   computed: {
     resizing () {

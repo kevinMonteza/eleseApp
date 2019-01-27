@@ -29,7 +29,7 @@ export const getForms = async (estado,desde) => {
     urlAux = urlEmpresa
   }
   urlAux = urlAux.concat(`?desde=${desde}`)
-  console.log(urlAux)
+  //console.log(urlAux)
   const res = await axios.get(urlAux)
   const datos = await res.data
   return datos
@@ -41,7 +41,7 @@ export const deleteForms = async (id,estado) => {
     urlAux = urlEmpresa
   }
   urlAux = urlAux.concat(id)
-  console.log(urlAux)
+ // console.log(urlAux)
   const res = await axios.delete(urlAux)
   const msj = await res.data.message
   return msj

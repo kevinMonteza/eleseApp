@@ -99,7 +99,7 @@ export default {
       return objs;
     },
     goTo(nro){
-      console.log("desde",nro)
+      //console.log("desde",nro)
       this.obtenerFomularios(this.checked,nro)
     },
     mostrar(id) {
@@ -107,12 +107,12 @@ export default {
     },
     async destroy(id) {
       const msj = await deleteForms(id, this.checked);
-      console.log(msj);
+    //  console.log(msj);
       this.data = {};
       this.obtenerFomularios(this.checked);
     },
     isChecked() {
-      console.log(this.checked);
+     // console.log(this.checked);
       this.data = {};
       this.obtenerFomularios(!this.checked);
     }
