@@ -5,23 +5,23 @@
           <input type="text" name="nombreApellidos" :placeholder="placeholderNombre" v-model="mensaje.nombreApellidos" class="uk-width-1-1 uk-input  inputForm">
         </div>
         <div>
-          <input type="text" name="dni" placeholder="DNI"  v-if="!estado" v-model="mensaje.dni" class="uk-width-1-1 uk-input  inputForm">
+          <input type="text" name="dni" required pattern="[0-9]" placeholder="DNI" title="Solo ingresar Números" v-if="!estado" v-model="mensaje.dni" class="uk-width-1-1 uk-input  inputForm">
         </div>
         <div>
-          <input type="text" name="celular" :placeholder="placeholderNro" v-model="mensaje.celular" class="uk-width-1-1 uk-input  inputForm">
+          <input type="text" name="celular" required pattern="[0-9]" title="Solo ingresar Números" :placeholder="placeholderNro" v-model="mensaje.celular" class="uk-width-1-1 uk-input  inputForm">
         </div>
         <div>
-          <input type="email"  name="correo" :placeholder="placeholderEmail" v-model="mensaje.email" class="uk-width-1-1 uk-input  inputForm" required="required" >
+          <input type="email"  name="correo" title="Ingrese un correo válido" :placeholder="placeholderEmail" v-model="mensaje.email" class="uk-width-1-1 uk-input  inputForm" required="required" >
         </div>
         <div>
           <input type="text" name="direccion"  placeholder="Dirección"  v-model="mensaje.direccion" class="uk-width-1-1 uk-input  inputForm" >
         </div>
         <div class="imputsEmpresa" v-if="estado">
           <div>
-            <input type="text" name="razonSocial" placeholder="Razon Social" v-model="mensaje.razonSocial" class="uk-width-1-1 uk-input  inputForm" >
+            <input type="text" name="razonSocial" title="Ingrese su nombre" placeholder="Razon Social" v-model="mensaje.razonSocial" class="uk-width-1-1 uk-input  inputForm" >
           </div>
           <div>
-            <input type="text" name="RUC" placeholder="RUC" v-model="mensaje.RUC" class="uk-width-1-1 uk-input  inputForm">
+            <input type="text" name="RUC" required pattern="[0-9]" title="Solo ingresar Números" placeholder="RUC" v-model="mensaje.RUC" class="uk-width-1-1 uk-input  inputForm">
           </div>
         </div>
       </div>
@@ -83,8 +83,11 @@ export default {
 .textArea{
   height: 140px;
 }
-.form {
+@media only screen and (min-width: 600px){
+ .form {
     width: 80%;
     margin: auto;
 }
+}
+
 </style>

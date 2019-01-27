@@ -29,47 +29,51 @@
         </div>
         <form @submit.stop.prevent="getDiscount">
           <Forms :estado="estadoInputs" :mensaje="msj"/>
-          <div class="uk-text-center uk-margin-top">
-            <button type="submit" class="buttonText" >Obtener Descuento</button>
+          <div class="uk-text-center uk-margin-top" >
+            <button type="submit"  class="buttonText uk-text-bold" >Obtener Descuento</button>
           </div>
         </form>
-       
+        <button uk-toggle="target: #modal-center" class="" id='openModal'>TestModal</button>
       </div>
     </div>
+    <Modal :mensaje="mensaje">
+    </Modal>
   </div>
 </template>
 
 <script>
 import Forms from "../components/forms.vue";
 import { servicePost } from "../services/services.js";
+import Modal from '@/components/modal.vue'
 export default {
   name: "viewForm",
   components: {
-    Forms
+    Forms,
+    Modal
   },
   data() {
     return {
       estadoInputs: false,
-      msj: {}
+      msj: {},
+      mensaje: "Eres acreedor de un 10% de descuento en nuestros productos. Recuerda que es válido hasta el 31 de diciembre de 2019"
     };
   },
   methods: {
     getDiscount() {
-      if (this.msj.email !== undefined || this.msj.comentario !== undefined) {
+      let id = document.getElementById('openModal');
+      console.log(this.estadoInputs)
         servicePost(this.msj, this.estadoInputs)
           .then(res => {
+            id.click();
             console.log(res);
           })
           .catch(e => {
             console.log(e);
           });
         this.msj = {};
-      } else {
-        console.log("campos vacios");
-      }
     }
-  }
-};
+}
+}
 </script>
 
 <style>
@@ -77,10 +81,55 @@ export default {
   width: 20%;
   margin-right: 20px;
 }
+.display{
+  display: none;
+}
 .subTitle {
   color: #fff;
   font-size: 20.8px;
   font-size: 1.3rem;
+}
+.title {
+  width: 100%;
+}
+.textTitle {
+  font-size: 1.75rem !important;
+  margin: 0;
+  color: #fff;
+}
+@media only screen and (max-width: 600px){
+.boton{
+  font-size: 0.8rem;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: transparent;
+  padding: 5px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 135px;
+}
+.buttonText {
+  border: 1px solid #067170;
+  background-color: #067170;
+  color: #fff;
+  font-size: 16px;
+  font-size: 1rem;
+  padding: 13px 23px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+}
+@media only screen and (min-width: 600px){
+  .boton {
+  font-size: 0.8rem;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: transparent;
+  padding: 10px 20px;
+  font-size: 1rem;
+  width: 175px;
+  cursor: pointer;
 }
 .buttonText {
   margin-left: 30px;
@@ -93,24 +142,8 @@ export default {
   text-transform: uppercase;
   cursor: pointer;
 }
-.title {
-  width: 100%;
 }
-.textTitle {
-  font-size: 1.75rem !important;
-  margin: 0;
-  color: #fff;
-}
-.boton {
-  font-size: 0.8rem;
-  border: 1px solid #fff;
-  color: #fff;
-  background-color: transparent;
-  padding: 10px 20px;
-  font-size: 1rem;
-  width: 175px;
-  cursor: pointer;
-}
+
 .container {
   width: 90%;
   margin: auto;

@@ -13,6 +13,8 @@ export const servicePost = async (data, estado) => {
   if(estado) {
     urlAux = urlEmpresa
   }
+  console.log(urlAux);
+  console.log(data);
   const res = await axios.post(urlAux, data, headers)
   const datos = await res.data
   return datos
@@ -36,6 +38,18 @@ export const deleteForms = async (id,estado) => {
   urlAux = urlAux.concat(id)
   console.log(urlAux)
   const res = await axios.delete(urlAux)
-  const datos = await res.data.message
+  const msj = await res.data.message
   return datos
+}
+export const updateForms = async (data, estado) =>{
+ // console.log(data)
+  let urlAux = urlPersona
+  if(estado) {
+    urlAux = urlEmpresa
+  }
+  urlAux = urlAux.concat(data._id)
+//  console.log(urlAux)
+  const res = await axios.put(urlAux,data,headers)
+  const msj = await res.data.message
+  return msj;
 }
