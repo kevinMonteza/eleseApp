@@ -32,7 +32,7 @@
                   </label>
                 </th>
               </tr>
-              <tr v-for="(form, index) in this.data" :key="form._id">
+              <tr v-for="(form, index) in this.data.formDB" :key="form._id">
                 <td>{{index + 1}}</td>
                 <td @click="mostrar(form._id)">{{form.nombreContacto || form.nombreApellidos}}</td>
                 <td class="uk-table-shrink">
@@ -43,6 +43,19 @@
                 </td>
               </tr>
             </table>
+              <ul class="uk-pagination uk-flex-center" uk-margin>
+                <li><a href="#"><span uk-pagination-previous></span></a></li>
+                <li @click.prevent="goTo(obj.desde)" v-for="obj in paginacion()" :key="obj.nro"><a >{{obj.nro}}</a></li>
+                <li><a href="#"><span uk-pagination-next></span></a></li>
+
+               ,<!-- <li><a href="#">{{data.cont}}</a></li>
+                <li class="uk-disabled"><span>...</span></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
+                <li class="uk-active"><span>7</span></li>
+                <li><a href="#">8</a></li> -->
+               
+              </ul>
           </div>
         </div>
       </div>
@@ -64,15 +77,30 @@ export default {
     this.obtenerFomularios(this.checked);
   },
   methods: {
-    obtenerFomularios(flag) {
-      getForms(flag)
+    obtenerFomularios(flag,nro) {
+      getForms(flag, nro)
         .then(res => {
-          //console.table(res);
+          console.log(res);
           this.data = res;
         })
         .catch(e => {
           console.log(e);
         });
+    },
+    paginacion(){
+      let objs=[];
+      let flag = 0;
+      console.log(this.pag)
+      for(let i=0;i<this.data.pag;i++){
+        let obj={'nro': i+1,"desde": flag }
+         objs.push(obj);
+         flag+=6;
+      }
+      return objs;
+    },
+    goTo(nro){
+      console.log("desde",nro)
+      this.obtenerFomularios(this.checked,nro)
     },
     mostrar(id) {
       console.log(id);
@@ -100,7 +128,7 @@ export default {
   width: 50px;
   height: 34px;
 }
-titleCont:{
+.titleCont{
   color:#708787;
 }
 .section{

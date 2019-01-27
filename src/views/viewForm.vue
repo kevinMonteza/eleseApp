@@ -27,13 +27,13 @@
             >Empresa</button>
           </div>
         </div>
-        <form @submit.stop.prevent="getDiscount">
+        <form @submit.stop.prevent="getDiscount" >
           <Forms :estado="estadoInputs" :mensaje="msj"/>
           <div class="uk-text-center uk-margin-top" >
             <button type="submit"  class="buttonText uk-text-bold" >Obtener Descuento</button>
           </div>
         </form>
-        <button uk-toggle="target: #modal-center" class="" id='openModal'>TestModal</button>
+        <button uk-toggle="target: #modal-center" class="display" id='openModal'></button>
       </div>
     </div>
     <Modal :mensaje="mensaje">
@@ -61,7 +61,7 @@ export default {
   methods: {
     getDiscount() {
       let id = document.getElementById('openModal');
-      console.log(this.estadoInputs)
+      console.log(this.msj)
         servicePost(this.msj, this.estadoInputs)
           .then(res => {
             id.click();
@@ -71,8 +71,17 @@ export default {
             console.log(e);
           });
         this.msj = {};
-    }
+        this.loader();
+    },
+    loader(){
+  this.msj.departamento="departamento"
+  this.msj.provincia ="provincia"
+  this.msj.distrito = "distrito"
 }
+},
+ mounted(){
+  this.loader()
+  },
 }
 </script>
 

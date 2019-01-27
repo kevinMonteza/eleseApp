@@ -13,20 +13,22 @@ export const servicePost = async (data, estado) => {
   if(estado) {
     urlAux = urlEmpresa
   }
-  console.log(urlAux);
-  console.log(data);
+  //console.log(urlAux);
+  //console.log(data);
   const res = await axios.post(urlAux, data, headers)
   const datos = await res.data
   return datos
 }
 
-export const getForms = async (estado) => {
+export const getForms = async (estado,desde) => {
   let urlAux = urlPersona
   if(estado) {
     urlAux = urlEmpresa
   }
+  urlAux = urlAux.concat(`?desde=${desde}`)
+  console.log(urlAux)
   const res = await axios.get(urlAux)
-  const datos = await res.data.formDB
+  const datos = await res.data
   return datos
 }
 
@@ -39,7 +41,7 @@ export const deleteForms = async (id,estado) => {
   console.log(urlAux)
   const res = await axios.delete(urlAux)
   const msj = await res.data.message
-  return datos
+  return msj
 }
 export const updateForms = async (data, estado) =>{
  // console.log(data)
