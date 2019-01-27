@@ -6,8 +6,11 @@ const headers = {
   'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
   'Access-Control-Allow-Headers': 'Content-Type'
 }
-let urlPersona =  'http://localhost:3000/persona/'
-let urlEmpresa =  'http://localhost:3000/empresa/'
+//let urlPersona =  'http://localhost:3000/persona/'//
+//let urlEmpresa =  'http://localhost:3000/empresa/'
+let urlPersona = 'https://appeleseserver.herokuapp.com/persona/'
+let urlEmpresa = 'https://appeleseserver.herokuapp.com/empresa/'
+
 export const servicePost = async (data, estado) => {
   let urlAux = urlPersona
   if(estado) {

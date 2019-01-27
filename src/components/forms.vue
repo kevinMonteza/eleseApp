@@ -123,11 +123,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .inputForm {
+  color: #fff;
   background-color: rgba(6,113,112,.7);
   padding: 5px;
   margin-bottom: 10px;
-  color: #fff;
 }
+
 .textArea{
   height: 140px;
 }
@@ -137,5 +138,9 @@ export default {
     margin: auto;
 }
 }
+::-webkit-input-placeholder { color:#fff; } 
+:-moz-placeholder { /* Firefox 18- */ color: #fff; } 
+::-moz-placeholder { /* Firefox 19+ */ color: #fff; } 
+:-ms-input-placeholder { color: #fff; }
 
 </style>
