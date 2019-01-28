@@ -1,6 +1,6 @@
 # appelese
 
-> A Vue.js project
+> A Vue.js project with UIKit css framework
 
 ## Build Setup
 
